@@ -12,7 +12,7 @@ jobs:
       - name: Checkout the latest code
         uses: actions/checkout@v2
         with:
-          repository: 'bnb-chain/bsc'
+          repository: 'MEV-soviets/bsc'
           ref: 'master'
 
       - name: Build and Restart Geth
