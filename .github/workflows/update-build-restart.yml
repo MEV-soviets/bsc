@@ -1,0 +1,28 @@
+name: Update, Build and Restart Geth
+
+on:
+  push:
+    branches:
+      - test-workflow
+
+jobs:
+  update-build-restart:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout the latest code
+        uses: actions/checkout@v2
+        with:
+          repository: 'bnb-chain/bsc'
+          ref: 'master'
+
+      - name: Build and Restart Geth
+        run: |
+          echo "hola" > hola.txt
+          # Build geth
+          # make geth
+          # Stop the current Geth process
+          # killall -q geth || true
+          # Copy new binary
+          # cp build/bin/geth /usr/local/bin/
+          # Restart Geth
+          # /usr/local/bin/geth --verbosity=3 --config=./config.toml  --cache=48000 --cache.trie=30  --tries-verify-mode=none --pruneancient --rpc.allow-unprotected-txs --history.transactions=0
