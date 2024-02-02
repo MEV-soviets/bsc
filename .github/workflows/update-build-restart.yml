@@ -1,0 +1,27 @@
+name: Update, Build and Restart Geth
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  update-build-restart:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout the latest code
+        uses: actions/checkout@v2
+        with:
+          repository: 'MEV-soviets/bsc'
+          ref: 'master'
+
+      - name: Build and Restart Geth
+        run: |
+          # Build geth
+          make geth
+          # Stop the current Geth process
+          systemctl --user stop geth.service
+          # Copy new binary
+          cp build/bin/geth /home/mev-soviet/.local/bin
+          # Start geth service
+          systemctl --user start geth.service
